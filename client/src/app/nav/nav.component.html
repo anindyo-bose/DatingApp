@@ -11,17 +11,21 @@
         <li class="nav-item">
           <a class="nav-link " href="#" >Messages</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " (click)="logout()">Logout</a>
+        </li>
       </ul>
 
-      <div class="dropdown">
-        <a href="" class="dropdown-toggle text-light">Welcome User</a>
-        <div class="dropdown-menu">
+      <div class="dropdown" *ngIf="loggedIn" dropdown>
+        <a class="dropdown-toggle text-light" dropdownToggle >Welcome User</a>
+        <div class="dropdown-menu mt-3"*dropdownMenu>
           <a  class="dropdown-item">Edit Profile</a>
-          <a  class="dropdown-item">Logout</a>
+          <div class="dropdown-divider"></div>
+          <a  class="dropdown-item"(click)="logout()">Logout</a>
         </div>
       </div>
 
-      <form #loginForm="ngForm" class="d-flex mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+      <form *ngIf="!loggedIn" #loginForm="ngForm" class="d-flex mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
         <input
             name ="username"
             [(ngModel)] ="model.username"
